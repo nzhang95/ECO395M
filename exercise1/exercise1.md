@@ -1,35 +1,38 @@
+ECO 395M: Exercises 1
+=====================
+
 1) Data visualization: gas prices
 ---------------------------------
 
-1.  Gas stations charge more if they lack direct competition in sight.
+#### A) Gas stations charge more if they lack direct competition in sight.
 
 <img src="1-1.png" width="250px" style="display: block; margin: auto;" />
 
 The boxplot shows that the gas price in the gas station tends to be
 higher when it lacks direct competition in sight.
 
-1.  The richer the area, the higher the gas price.
+#### B) The richer the area, the higher the gas price.
 
 <img src="1-2.png" width="250px" style="display: block; margin: auto;" />
 
 The scatter plot shows that the gas price in richer areas tends to be
 higher, but the trend is not significant.
 
-1.  Shell charges more than other brands.
+#### C) Shell charges more than other brands.
 
 <img src="1-3.png" width="250px" style="display: block; margin: auto;" />
 
 We cannot claim that Shell charges more than other brands from the bar
 plot.
 
-1.  Gas stations at stoplights charge more.
+#### D) Gas stations at stoplights charge more.
 
 <img src="1-4.png" width="250px" style="display: block; margin: auto;" />
 
 We cannot tell that gas stations at stoplights charge more from the
 histogram plot.
 
-1.  Gas stations with direct highway access charge more.
+#### E) Gas stations with direct highway access charge more.
 
 <img src="1-5.png" width="250px" style="display: block; margin: auto;" />
 
@@ -39,8 +42,7 @@ charge more.
 2) Data visualization: a bike share network
 -------------------------------------------
 
-1.  Plot A: a line graph showing average bike rentals (total) versus
-    hour of the day (hr).
+#### A) Plot A: a line graph showing average bike rentals (total) versus hour of the day (hr).
 
 <img src="2-1.png" width="250px" style="display: block; margin: auto;" />
 
@@ -48,8 +50,7 @@ This figure directly depicits the overall ridership pattern. Generally,
 the average bike rentals begin rising after 5 a.m., flunctuate till
 18:00 p.m. and decline since then.
 
-1.  Plot B: a faceted line graph showing average bike rentals versus
-    hour of the day, faceted according to whether it is a working day.
+#### B) Plot B: a faceted line graph showing average bike rentals versus hour of the day, faceted according to whether it is a working day.
 
 <img src="2-2.png" width="250px" style="display: block; margin: auto;" />
 
@@ -59,9 +60,7 @@ significantly different. During working days, the rentals reach peaks at
 Compared to that, the curve of daily rental pattern in non-working days
 are much more smooth.
 
-1.  Plot C: a faceted bar plot showing average ridership during the 8 AM
-    hour by weather situation code, faceted according to whether it is a
-    working day or not.
+#### C) Plot C: a faceted bar plot showing average ridership during the 8 AM hour by weather situation code, faceted according to whether it is a working day or not.
 
 <img src="2-3.png" width="250px" style="display: block; margin: auto;" />
 
