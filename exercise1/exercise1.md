@@ -6,7 +6,7 @@ ECO 395M: Exercises 1
 
 ### A) Gas stations charge more if they lack direct competition in sight.
 
-<img src="1-1.png" width="250px" style="display: block; margin: auto;" />
+![](1-1.png)
 
 The boxplot shows that the gas price in the gas station tends to be
 higher when it lacks direct competition in sight.
