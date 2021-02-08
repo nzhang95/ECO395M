@@ -1,10 +1,8 @@
 ECO 395M: Exercises 1
----------------------
+=====================
 
-### 1) Data visualization: gas prices
-
-
-## 1) Data visualization: gas prices
+1) Data visualization: gas prices
+---------------------------------
 
 ### A) Gas stations charge more if they lack direct competition in sight.
 
