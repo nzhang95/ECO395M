@@ -109,7 +109,9 @@ K.
 ![](4-1.png)
 
 The optimal K = 18 with an average RMSE of 10193.5, and the price
-predictions for trim 350 is shown as follows.
+predictions for trim 350 is shown as follows. The red line represents
+the predicted price, while the scatter points represent the actual
+price.
 
 ![](4-2.png)
 
@@ -118,7 +120,9 @@ We can repeat the process for trim 63 AMG.
 ![](4-3.png)
 
 The optimal K = 43 with an average RMSE of 14517.7, and the price
-predictions for trim 63 AMG is shown as follows.
+predictions for trim 63 AMG is shown as follows. The red line represents
+the predicted price, while the scatter points represent the actual
+price.
 
 ![](4-4.png)
 
