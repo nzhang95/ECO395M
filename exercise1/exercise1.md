@@ -1,4 +1,8 @@
-# ECO 395M: Exercises 1
+ECO 395M: Exercises 1
+---------------------
+
+### 1) Data visualization: gas prices
+
 
 ## 1) Data visualization: gas prices
 
