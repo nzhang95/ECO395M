@@ -2,7 +2,8 @@
 ---------------------------------
 
 1.  Gas stations charge more if they lack direct competition in sight.
-    <img src="1-1.png" width="250px" style="display: block; margin: auto;" />
+
+<img src="1-1.png" width="250px" style="display: block; margin: auto;" />
 
 The boxplot shows that the gas price in the gas station tends to be
 higher when it lacks direct competition in sight.
@@ -15,19 +16,22 @@ The scatter plot shows that the gas price in richer areas tends to be
 higher, but the trend is not significant.
 
 1.  Shell charges more than other brands.
-    <img src="1-3.png" width="250px" style="display: block; margin: auto;" />
+
+<img src="1-3.png" width="250px" style="display: block; margin: auto;" />
 
 We cannot claim that Shell charges more than other brands from the bar
 plot.
 
 1.  Gas stations at stoplights charge more.
-    <img src="1-4.png" width="250px" style="display: block; margin: auto;" />
+
+<img src="1-4.png" width="250px" style="display: block; margin: auto;" />
 
 We cannot tell that gas stations at stoplights charge more from the
 histogram plot.
 
 1.  Gas stations with direct highway access charge more.
-    <img src="1-5.png" width="250px" style="display: block; margin: auto;" />
+
+<img src="1-5.png" width="250px" style="display: block; margin: auto;" />
 
 As shown in the boxplot, the gas stations with direct highway access
 charge more.
@@ -37,7 +41,8 @@ charge more.
 
 1.  Plot A: a line graph showing average bike rentals (total) versus
     hour of the day (hr).
-    <img src="2-1.png" width="250px" style="display: block; margin: auto;" />
+
+<img src="2-1.png" width="250px" style="display: block; margin: auto;" />
 
 This figure directly depicits the overall ridership pattern. Generally,
 the average bike rentals begin rising after 5 a.m., flunctuate till
@@ -57,7 +62,8 @@ are much more smooth.
 1.  Plot C: a faceted bar plot showing average ridership during the 8 AM
     hour by weather situation code, faceted according to whether it is a
     working day or not.
-    <img src="2-3.png" width="250px" style="display: block; margin: auto;" />
+
+<img src="2-3.png" width="250px" style="display: block; margin: auto;" />
 
 As shown and analyzed in B), the average ridership during the 8 AM in
 working days is significantly higher than it in non-working days. In
@@ -100,6 +106,7 @@ We first fliter the data with trim 350 and then split it into a training
 and a testing set. We use a 5-fold cross validation to train KNN models
 for different K on the training set and plot means and std errors versus
 K.
+
 <img src="4-1.png" width="250px" style="display: block; margin: auto;" />
 
 The optimal K = 18 with an average RMSE of 10193.5, and the price
