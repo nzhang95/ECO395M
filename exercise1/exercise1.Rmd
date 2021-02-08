@@ -6,6 +6,7 @@ output: md_document
 ---
 
 # ECO 395M: Exercises 1
+Nan Zhang (nz2996)
 
 ```{r, setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, wwarning = FALSE)
