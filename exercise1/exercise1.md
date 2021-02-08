@@ -1,8 +1,7 @@
 ECO 395M: Exercises 1
 =====================
 
-1) Data visualization: gas prices
----------------------------------
+## 1) Data visualization: gas prices
 
 ### A) Gas stations charge more if they lack direct competition in sight.
 
@@ -39,8 +38,7 @@ histogram plot.
 As shown in the boxplot, the gas stations with direct highway access
 charge more.
 
-2) Data visualization: a bike share network
--------------------------------------------
+## 2) Data visualization: a bike share network
 
 ### A) Plot A: a line graph showing average bike rentals (total) versus hour of the day (hr).
 
@@ -70,8 +68,7 @@ addition, weather tends to have sigfinifant impacts on the ridership.
 Specifically, people are less likely to ride when it is rainy or snowny
 in both working and non-working days.
 
-3) Data visualization: flights at ABIA
---------------------------------------
+## 3) Data visualization: flights at ABIA
 
 ![](3-1.png)
 
@@ -98,8 +95,7 @@ arrival delays, while JetBlue has the poorest performance. However, we
 need to be clear that the arrival delay is not the only standard to
 justify the service quality of airlines.
 
-4) K-nearest neighbors
-----------------------
+## 4) K-nearest neighbors
 
 We first fliter the data with trim 350 and then split it into a training
 and a testing set. We use a 5-fold cross validation to train KNN models
