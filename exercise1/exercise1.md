@@ -1,5 +1,6 @@
 ECO 395M: Exercises 1
 =====================
+Nan Zhang (nz2996)
 
 ## 1) Data visualization: gas prices
 
