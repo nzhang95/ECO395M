@@ -279,8 +279,9 @@ for (i in 1:n) {
   f1[i] <- (2 * tp/(2 * tp + fp + fn))
 }
 
-ggplot() + geom_line(aes(x=fpr1, y=tpr1, color = "blue")) + geom_line(aes(x=fpr2, y=tpr2, color = "black")) + geom_line(aes(x=fpr3, y=tpr3, color = "orange")) +
-  scale_color_discrete(name = "Model", labels = c("Baseline 1", "Baseline 2", "Linear model")) + 
+ggplot() + geom_line(aes(x=fpr1, y=tpr1, color = "Baseline 1")) + geom_line(aes(x=fpr2, y=tpr2, color = "Baseline 2")) + geom_line(aes(x=fpr3, y=tpr3, color = "Linear model")) +
+    scale_color_manual(name = "Model", 
+                     values = c("Baseline 1" = "blue", "Baseline 2" = "black", "Linear model" = "orange")) + 
   labs(
   x = "FPR(t)",
   y = "TPR(t)"
