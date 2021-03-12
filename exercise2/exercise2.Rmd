@@ -290,7 +290,7 @@ ggplot() + geom_line(aes(x=fpr1, y=tpr1, color = "Baseline 1")) + geom_line(aes(
 
 ### C) Model validation: step 2
 
-In step 2, we create 20 folds of hotels_Val, predict whether each booking will have children on it using above 3 model, and compare predictions. The threshold is set as 0.41, which is determinted by maximizing the F1 score. We can find that baseline 2 and linear model behave similarly, but there are still gaps between predictions and true value.
+In step 2, we create 20 folds of hotels_Val, predict whether each booking will have children on it using above 3 model, and compare predictions. The threshold is set as `r threshold`, which is determinted by maximizing the F1 score. We can find that baseline 2 and linear model behave similarly, but there are still gaps between predictions and true value.
 
 ```{r, echo = FALSE}
 yhat_test1 = ifelse(probhat_test1 >= 0.41, 1, 0)

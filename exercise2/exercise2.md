@@ -37,74 +37,70 @@ Recall the medium linear model in class, coefficients can be expressed
 as follows.
 
     ##            (Intercept)                lotSize                    age 
-    ##            46014.15143             9767.13805               60.43203 
+    ##            39358.65735            10735.11845              100.08182 
     ##             livingArea               bedrooms             fireplaces 
-    ##               91.78518           -15273.77998            -2666.06880 
+    ##               95.02456           -16959.98157             3223.60053 
     ##              bathrooms                  rooms heatinghot water/steam 
-    ##            21529.36649             3541.69653            -8099.26582 
+    ##            19741.85680             4082.97581           -10999.28657 
     ##        heatingelectric           fuelelectric                fueloil 
-    ##           -10688.35594            -6732.27755           -12355.24496 
+    ##            -1276.15851           -14333.51916            -7247.44858 
     ##           centralAirNo 
-    ##           -19073.55099
+    ##           -17555.49157
 
 Now we use the step regression based on the above medium linear model,
 and thus obtain the following best linear model with following
 coeffecients.
 
-    ##                         (Intercept)                             lotSize 
-    ##                        4.768670e+04                       -1.121908e+05 
-    ##                                 age                          livingArea 
-    ##                       -8.733498e+02                       -2.190279e+02 
-    ##                            bedrooms                          fireplaces 
-    ##                        1.405834e+03                        1.878130e+05 
-    ##                           bathrooms                               rooms 
-    ##                        1.103304e+05                        7.044231e+04 
-    ##              heatinghot water/steam                     heatingelectric 
-    ##                        2.839376e+05                        1.531749e+05 
-    ##                        fuelelectric                             fueloil 
-    ##                       -1.913340e+04                        1.407392e+05 
-    ##                        centralAirNo                           landValue 
-    ##                        3.390057e+04                       -1.016304e+00 
-    ##                        waterfrontNo                   newConstructionNo 
-    ##                       -5.174835e+04                       -9.528588e+03 
-    ##         landValue:newConstructionNo             livingArea:fuelelectric 
-    ##                        7.997041e-01                        3.306088e+00 
-    ##                  livingArea:fueloil              landValue:waterfrontNo 
-    ##                       -3.411370e+01                        1.123849e+00 
-    ##                fireplaces:landValue             livingArea:centralAirNo 
-    ##                       -5.649939e-01                       -1.550164e+01 
-    ##                   lotSize:landValue           fuelelectric:centralAirNo 
-    ##                       -2.852084e-01                        1.568513e+04 
-    ##                fueloil:centralAirNo                       lotSize:rooms 
-    ##                       -5.954592e+04                        2.190240e+03 
-    ##                    age:centralAirNo        rooms:heatinghot water/steam 
-    ##                        6.728969e+02                       -5.644829e+03 
-    ##               rooms:heatingelectric             fireplaces:waterfrontNo 
-    ##                       -1.087060e+03                       -1.072910e+05 
-    ##                lotSize:waterfrontNo                 bathrooms:landValue 
-    ##                        1.154138e+05                        2.399888e-01 
-    ##                       age:landValue                 bedrooms:fireplaces 
-    ##                        4.919513e-03                       -1.530855e+04 
-    ##               livingArea:fireplaces        fireplaces:newConstructionNo 
-    ##                        1.368720e+01                       -3.966422e+04 
-    ##              bathrooms:fuelelectric                   bathrooms:fueloil 
-    ##                       -1.750808e+04                       -2.106310e+04 
-    ##              bathrooms:waterfrontNo             livingArea:waterfrontNo 
-    ##                       -1.421985e+05                        3.280733e+02 
-    ##                  rooms:waterfrontNo heatinghot water/steam:waterfrontNo 
-    ##                       -6.697146e+04                       -2.465950e+05 
-    ##        heatingelectric:waterfrontNo              fuelelectric:landValue 
-    ##                       -1.269274e+05                        1.435707e+00 
-    ##                   fueloil:landValue    heatinghot water/steam:landValue 
-    ##                       -1.895791e-01                       -1.970392e-01 
-    ##           heatingelectric:landValue         bathrooms:newConstructionNo 
-    ##                       -1.205217e+00                        4.927943e+04 
-    ##      centralAirNo:newConstructionNo        livingArea:newConstructionNo 
-    ##                       -2.493956e+04                       -3.259320e+01
+    ##                    (Intercept)                        lotSize 
+    ##                   2.371179e+05                   1.458142e+04 
+    ##                            age                     livingArea 
+    ##                  -2.711779e+03                  -2.043311e+02 
+    ##                       bedrooms                     fireplaces 
+    ##                   1.483077e+05                   1.842884e+05 
+    ##                      bathrooms                          rooms 
+    ##                   1.390831e+04                   3.255899e+03 
+    ##         heatinghot water/steam                heatingelectric 
+    ##                   1.188573e+04                   1.415302e+04 
+    ##                   fuelelectric                        fueloil 
+    ##                  -1.849719e+04                   1.020640e+03 
+    ##                   centralAirNo                      landValue 
+    ##                   1.000513e+04                   5.038943e-01 
+    ##                   waterfrontNo              newConstructionNo 
+    ##                  -2.443776e+05                   1.394588e+04 
+    ##    landValue:newConstructionNo        livingArea:centralAirNo 
+    ##                   4.721848e-01                  -1.465747e+01 
+    ##           fireplaces:landValue          livingArea:fireplaces 
+    ##                  -6.421607e-01                   2.333602e+01 
+    ##        fireplaces:waterfrontNo        livingArea:waterfrontNo 
+    ##                  -1.732453e+05                   2.739875e+02 
+    ##          bedrooms:waterfrontNo         fuelelectric:landValue 
+    ##                  -1.482659e+05                   3.211936e-01 
+    ##              fueloil:landValue      fuelelectric:centralAirNo 
+    ##                  -4.297839e-01                   1.630191e+04 
+    ##           fueloil:centralAirNo               age:waterfrontNo 
+    ##                  -4.050577e+04                   2.069557e+03 
+    ##               age:centralAirNo        livingArea:fuelelectric 
+    ##                   5.497039e+02                   3.513150e-01 
+    ##             livingArea:fueloil      fuelelectric:waterfrontNo 
+    ##                  -2.167577e+01                  -1.054239e+04 
+    ##           fueloil:waterfrontNo            bedrooms:fireplaces 
+    ##                   7.721434e+04                  -8.014384e+03 
+    ##            bathrooms:landValue                  age:landValue 
+    ##                   3.352806e-01                   4.628364e-03 
+    ## lotSize:heatinghot water/steam        lotSize:heatingelectric 
+    ##                   2.351513e+04                  -6.997711e+02 
+    ##             lotSize:fireplaces             bedrooms:landValue 
+    ##                  -7.778659e+03                  -1.170336e-01 
+    ##                    lotSize:age                  lotSize:rooms 
+    ##                  -2.123502e+02                   2.322407e+03 
+    ##              lotSize:bathrooms   rooms:heatinghot water/steam 
+    ##                  -9.205056e+03                  -4.843031e+03 
+    ##          rooms:heatingelectric 
+    ##                  -2.183342e+03
 
-The out-of-sample RMSE for the best linear model is 6.455404110^{4},
+The out-of-sample RMSE for the best linear model is 5.709928610^{4},
 which indicates it significantly outperforms the medium linear model
-whose RMSE is 6.812090110^{4}.
+whose RMSE is 6.69228910^{4}.
 
 ### B) K-nearest-neighbor regression model
 
@@ -112,9 +108,9 @@ whose RMSE is 6.812090110^{4}.
 
 Now we begin to build the K-nearest-neighbor regression model. From the
 RMSE plot, we find the optimal K obtained from training set is 8 with
-RMSE 6.059018410^{4}.
+RMSE 6.286918510^{4}.
 
-Next, we do prediction using the optimal K, with RMSE 6.682439910^{4}.
+Next, we do prediction using the optimal K, with RMSE 5.757266810^{4}.
 The KNN model seems to have similar performance on
 achievingout-of-sample mean-squared error compared to linear model. The
 reason behind may be that the price doesn’t not have a clear linear
@@ -153,139 +149,139 @@ poor and terrible.
 
 ### A) Model building
 
-We first build the baseline 1 model with RMSE 0.2684381.
+We first build the baseline 1 model with RMSE 0.266625.
 
     ##                  (Intercept)  market_segmentComplementary 
-    ##                  -0.02531083                   0.07436734 
+    ##                 -0.020625518                  0.090271588 
     ##      market_segmentCorporate         market_segmentDirect 
-    ##                   0.01499826                   0.11163456 
+    ##                  0.013441989                  0.115799024 
     ##         market_segmentGroups  market_segmentOffline_TA/TO 
-    ##                   0.01027402                   0.02448492 
+    ##                  0.006471694                  0.022072111 
     ##      market_segmentOnline_TA                       adults 
-    ##                   0.07994469                   0.01911658 
+    ##                  0.080835935                  0.016975340 
     ##           customer_typeGroup       customer_typeTransient 
-    ##                  -0.01455807                   0.01941276 
+    ##                 -0.017348344                  0.018129254 
     ## customer_typeTransient-Party            is_repeated_guest 
-    ##                  -0.01032236                  -0.03927724
+    ##                 -0.007817164                 -0.042165453
 
-We then build the baseline 1 model with RMSE 0.2338721.
+We then build the baseline 1 model with RMSE 0.2317826.
 
     ##                        (Intercept)                  hotelResort_Hotel 
-    ##                      -5.711038e-02                      -3.470843e-02 
+    ##                      -6.506453e-02                      -3.388670e-02 
     ##                          lead_time            stays_in_weekend_nights 
-    ##                       4.744390e-05                       3.056381e-03 
+    ##                       3.082275e-05                       4.667454e-03 
     ##               stays_in_week_nights                             adults 
-    ##                      -8.978911e-04                      -3.749122e-02 
+    ##                      -3.161816e-04                      -3.933953e-02 
     ##                             mealFB                             mealHB 
-    ##                       5.007105e-02                      -5.206145e-04 
+    ##                       1.865732e-02                       1.873441e-03 
     ##                             mealSC                      mealUndefined 
-    ##                      -5.436529e-02                       3.172464e-02 
+    ##                      -5.328223e-02                       2.103112e-02 
     ##        market_segmentComplementary            market_segmentCorporate 
-    ##                       4.706004e-02                       4.667838e-02 
+    ##                       6.782503e-02                       4.999491e-02 
     ##               market_segmentDirect               market_segmentGroups 
-    ##                       5.055139e-02                       6.096289e-02 
+    ##                       5.443911e-02                       6.268574e-02 
     ##        market_segmentOffline_TA/TO            market_segmentOnline_TA 
-    ##                       7.286083e-02                       6.433929e-02 
+    ##                       7.407668e-02                       6.722149e-02 
     ##         distribution_channelDirect            distribution_channelGDS 
-    ##                       1.640792e-02                      -7.187363e-02 
+    ##                       1.814907e-02                      -7.238348e-02 
     ##          distribution_channelTA/TO                  is_repeated_guest 
-    ##                       1.181646e-03                      -2.828175e-02 
+    ##                       2.828434e-03                      -3.150484e-02 
     ##             previous_cancellations     previous_bookings_not_canceled 
-    ##                       1.077941e-03                      -2.305524e-03 
+    ##                       6.363709e-04                      -2.191993e-03 
     ##                reserved_room_typeB                reserved_room_typeC 
-    ##                       1.946637e-01                       5.525840e-01 
+    ##                       2.358578e-01                       5.470497e-01 
     ##                reserved_room_typeD                reserved_room_typeE 
-    ##                      -6.587815e-02                      -2.813011e-02 
+    ##                      -6.859883e-02                      -2.326734e-02 
     ##                reserved_room_typeF                reserved_room_typeG 
-    ##                       3.054590e-01                       4.171038e-01 
+    ##                       3.000435e-01                       4.353515e-01 
     ##                reserved_room_typeH                reserved_room_typeL 
-    ##                       6.101676e-01                      -8.463921e-02 
+    ##                       5.473498e-01                      -2.215931e-02 
     ##                assigned_room_typeB                assigned_room_typeC 
-    ##                       2.362836e-02                       8.829789e-02 
+    ##                       8.551638e-03                       9.039763e-02 
     ##                assigned_room_typeD                assigned_room_typeE 
-    ##                       5.913836e-02                       5.392233e-02 
+    ##                       6.009274e-02                       4.639133e-02 
     ##                assigned_room_typeF                assigned_room_typeG 
-    ##                       6.340718e-02                       1.013804e-01 
+    ##                       6.365142e-02                       9.240518e-02 
     ##                assigned_room_typeH                assigned_room_typeI 
-    ##                       7.760483e-02                       9.724079e-02 
+    ##                       1.152784e-01                       9.392410e-02 
     ##                assigned_room_typeK                    booking_changes 
-    ##                       1.410161e-02                       2.080158e-02 
+    ##                       3.280336e-02                       1.900105e-02 
     ##             deposit_typeNon_Refund             deposit_typeRefundable 
-    ##                       3.351305e-02                       2.103113e-02 
+    ##                       3.241135e-02                       3.359746e-02 
     ##               days_in_waiting_list                 customer_typeGroup 
-    ##                      -6.049736e-05                      -5.449922e-03 
+    ##                      -1.382975e-05                      -2.532230e-03 
     ##             customer_typeTransient       customer_typeTransient-Party 
-    ##                       1.175013e-02                      -3.348658e-02 
+    ##                       1.398069e-02                      -2.830991e-02 
     ##                 average_daily_rate required_car_parking_spacesparking 
-    ##                       8.736150e-04                      -6.606695e-04 
+    ##                       9.048462e-04                       1.860900e-03 
     ##          total_of_special_requests 
-    ##                       3.303487e-02
+    ##                       3.335135e-02
 
-We finally build the baseline 3 model with RMSE 0.2326119, including
+We finally build the baseline 3 model with RMSE 0.23057, including
 features extracted from arrival\_date.
 
     ##                    (Intercept)              hotelResort_Hotel 
-    ##                  -1.416226e-02                  -3.622535e-02 
-    ##                      lead_time                         adults 
-    ##                   8.148413e-05                  -4.177432e-02 
-    ##                         mealFB                         mealHB 
-    ##                   3.193765e-02                  -5.242662e-03 
-    ##                         mealSC                  mealUndefined 
-    ##                  -5.252094e-02                   1.533136e-02 
-    ##    market_segmentComplementary        market_segmentCorporate 
-    ##                   4.472275e-02                   3.422156e-02 
-    ##           market_segmentDirect           market_segmentGroups 
-    ##                   3.903954e-02                   5.607222e-02 
-    ##    market_segmentOffline_TA/TO        market_segmentOnline_TA 
-    ##                   6.642447e-02                   5.459787e-02 
-    ##     distribution_channelDirect        distribution_channelGDS 
-    ##                   1.199651e-02                  -7.386659e-02 
-    ##      distribution_channelTA/TO              is_repeated_guest 
-    ##                  -4.682281e-03                  -2.707214e-02 
-    ## previous_bookings_not_canceled            reserved_room_typeB 
-    ##                  -2.277526e-03                   1.760779e-01 
-    ##            reserved_room_typeC            reserved_room_typeD 
-    ##                   5.417301e-01                  -6.349571e-02 
-    ##            reserved_room_typeE            reserved_room_typeF 
-    ##                  -3.073202e-02                   2.986088e-01 
-    ##            reserved_room_typeG            reserved_room_typeH 
-    ##                   4.083797e-01                   5.968138e-01 
-    ##            reserved_room_typeL            assigned_room_typeB 
-    ##                  -1.079101e-01                   3.051058e-02 
-    ##            assigned_room_typeC            assigned_room_typeD 
-    ##                   9.475916e-02                   5.758875e-02 
-    ##            assigned_room_typeE            assigned_room_typeF 
-    ##                   5.695984e-02                   6.769224e-02 
-    ##            assigned_room_typeG            assigned_room_typeH 
-    ##                   1.080104e-01                   8.937750e-02 
-    ##            assigned_room_typeI            assigned_room_typeK 
-    ##                   9.935084e-02                   1.622069e-02 
-    ##                booking_changes             customer_typeGroup 
-    ##                   2.059284e-02                  -9.021990e-03 
-    ##         customer_typeTransient   customer_typeTransient-Party 
-    ##                   2.510168e-03                  -4.164707e-02 
-    ##             average_daily_rate      total_of_special_requests 
-    ##                   9.289572e-04                   3.326949e-02 
-    ##                  arrival_wday2                  arrival_wday3 
-    ##                  -1.246005e-03                  -8.382961e-03 
-    ##                  arrival_wday4                  arrival_wday5 
-    ##                  -7.564224e-03                  -6.505527e-03 
-    ##                  arrival_wday6                  arrival_wday7 
-    ##                  -1.156484e-02                   5.324085e-03 
-    ##                 arrival_month2                 arrival_month3 
-    ##                   2.312525e-02                  -2.614291e-03 
-    ##                 arrival_month4                 arrival_month5 
-    ##                  -5.207957e-03                  -3.796171e-02 
-    ##                 arrival_month6                 arrival_month7 
-    ##                  -3.307440e-02                   1.313906e-02 
-    ##                 arrival_month8                 arrival_month9 
-    ##                   6.098448e-03                  -5.350068e-02 
-    ##                arrival_month10                arrival_month11 
-    ##                  -2.879893e-02                  -2.407951e-02 
-    ##                arrival_month12               arrival_year2016 
-    ##                   5.181346e-03                   3.259832e-03 
-    ##               arrival_year2017 
-    ##                  -1.434771e-02
+    ##                  -2.287024e-02                  -3.531073e-02 
+    ##                      lead_time           stays_in_week_nights 
+    ##                   6.200331e-05                   1.164492e-03 
+    ##                         adults                         mealFB 
+    ##                  -4.368388e-02                   7.589183e-04 
+    ##                         mealHB                         mealSC 
+    ##                  -2.756539e-03                  -5.207352e-02 
+    ##                  mealUndefined    market_segmentComplementary 
+    ##                   3.703382e-03                   6.787128e-02 
+    ##        market_segmentCorporate           market_segmentDirect 
+    ##                   4.195643e-02                   4.654347e-02 
+    ##           market_segmentGroups    market_segmentOffline_TA/TO 
+    ##                   6.306948e-02                   7.196578e-02 
+    ##        market_segmentOnline_TA     distribution_channelDirect 
+    ##                   6.192101e-02                   1.335632e-02 
+    ##        distribution_channelGDS      distribution_channelTA/TO 
+    ##                  -7.326842e-02                  -3.869643e-03 
+    ##              is_repeated_guest previous_bookings_not_canceled 
+    ##                  -3.009035e-02                  -2.162334e-03 
+    ##            reserved_room_typeB            reserved_room_typeC 
+    ##                   2.177554e-01                   5.351308e-01 
+    ##            reserved_room_typeD            reserved_room_typeE 
+    ##                  -6.678254e-02                  -2.659489e-02 
+    ##            reserved_room_typeF            reserved_room_typeG 
+    ##                   2.924893e-01                   4.260768e-01 
+    ##            reserved_room_typeH            reserved_room_typeL 
+    ##                   5.333480e-01                  -4.621305e-02 
+    ##            assigned_room_typeB            assigned_room_typeC 
+    ##                   1.489594e-02                   9.657584e-02 
+    ##            assigned_room_typeD            assigned_room_typeE 
+    ##                   5.867880e-02                   4.995231e-02 
+    ##            assigned_room_typeF            assigned_room_typeG 
+    ##                   6.847635e-02                   9.943024e-02 
+    ##            assigned_room_typeH            assigned_room_typeI 
+    ##                   1.301597e-01                   9.669155e-02 
+    ##            assigned_room_typeK                booking_changes 
+    ##                   3.422219e-02                   1.886834e-02 
+    ##             customer_typeGroup         customer_typeTransient 
+    ##                  -9.229443e-03                   3.961882e-03 
+    ##   customer_typeTransient-Party             average_daily_rate 
+    ##                  -3.768601e-02                   9.534779e-04 
+    ##      total_of_special_requests                  arrival_wday2 
+    ##                   3.336430e-02                  -5.302359e-03 
+    ##                  arrival_wday3                  arrival_wday4 
+    ##                  -1.142600e-02                  -1.251360e-02 
+    ##                  arrival_wday5                  arrival_wday6 
+    ##                  -6.677058e-03                  -1.116392e-02 
+    ##                  arrival_wday7                 arrival_month2 
+    ##                   5.407345e-03                   2.210810e-02 
+    ##                 arrival_month3                 arrival_month4 
+    ##                  -4.465004e-03                  -3.919675e-03 
+    ##                 arrival_month5                 arrival_month6 
+    ##                  -4.070036e-02                  -3.669845e-02 
+    ##                 arrival_month7                 arrival_month8 
+    ##                   1.154361e-02                   7.216384e-03 
+    ##                 arrival_month9                arrival_month10 
+    ##                  -5.116316e-02                  -2.883306e-02 
+    ##                arrival_month11                arrival_month12 
+    ##                  -2.924985e-02                   6.025032e-03 
+    ##               arrival_year2016               arrival_year2017 
+    ##                   4.842297e-03                  -1.006436e-02
 
 ### B) Model validation: step 1
 
@@ -300,7 +296,7 @@ that linear model and baseline 2 are significantly better than baseline
 
 In step 2, we create 20 folds of hotels\_Val, predict whether each
 booking will have children on it using above 3 model, and compare
-predictions. The threshold is set as 0.41, which is determinted by
+predictions. The threshold is set as 1, which is determinted by
 maximizing the F1 score. We can find that baseline 2 and linear model
 behave similarly, but there are still gaps between predictions and true
 value.
@@ -324,122 +320,122 @@ value.
 <tr class="odd">
 <td style="text-align: right;">0.0682731</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0481928</td>
+<td style="text-align: right;">0.0441767</td>
 <td style="text-align: right;">0.0441767</td>
 </tr>
 <tr class="even">
+<td style="text-align: right;">0.0800000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0520000</td>
+<td style="text-align: right;">0.0520000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.0800000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0600000</td>
+<td style="text-align: right;">0.0560000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.1080000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0680000</td>
+<td style="text-align: right;">0.0640000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.0480000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0520000</td>
+<td style="text-align: right;">0.0480000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.0840000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0640000</td>
+<td style="text-align: right;">0.0640000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.0640000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0640000</td>
+<td style="text-align: right;">0.0600000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.0840000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0680000</td>
+<td style="text-align: right;">0.0640000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.0520000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0280000</td>
+<td style="text-align: right;">0.0200000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.0960000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0760000</td>
+<td style="text-align: right;">0.0760000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.0840000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0480000</td>
+<td style="text-align: right;">0.0480000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.1080000</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0.0720000</td>
+<td style="text-align: right;">0.0720000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.1000000</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0.0400000</td>
+<td style="text-align: right;">0.0400000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.0880000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0720000</td>
+<td style="text-align: right;">0.0720000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.0840000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0640000</td>
+<td style="text-align: right;">0.0640000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.0440000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0360000</td>
 <td style="text-align: right;">0.0360000</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">0.0680000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0480000</td>
-<td style="text-align: right;">0.0480000</td>
-</tr>
-<tr class="even">
 <td style="text-align: right;">0.0840000</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0640000</td>
-<td style="text-align: right;">0.0560000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.0760000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0760000</td>
-<td style="text-align: right;">0.0720000</td>
+<td style="text-align: right;">0.0480000</td>
+<td style="text-align: right;">0.0480000</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">0.0800000</td>
+<td style="text-align: right;">0.0880000</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0680000</td>
-<td style="text-align: right;">0.0680000</td>
+<td style="text-align: right;">0.0400000</td>
+<td style="text-align: right;">0.0320000</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">0.0800000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0600000</td>
-<td style="text-align: right;">0.0600000</td>
-</tr>
-<tr class="even">
 <td style="text-align: right;">0.0920000</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0640000</td>
-<td style="text-align: right;">0.0640000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.0840000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0560000</td>
-<td style="text-align: right;">0.0560000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.0760000</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0480000</td>
 <td style="text-align: right;">0.0520000</td>
-<td style="text-align: right;">0.0520000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.1000000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0440000</td>
-<td style="text-align: right;">0.0440000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.0800000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0320000</td>
-<td style="text-align: right;">0.0320000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.0760000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0600000</td>
-<td style="text-align: right;">0.0560000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.1000000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0520000</td>
-<td style="text-align: right;">0.0520000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.1040000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0440000</td>
-<td style="text-align: right;">0.0440000</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">0.0720000</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0480000</td>
-<td style="text-align: right;">0.0440000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.0840000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0440000</td>
 <td style="text-align: right;">0.0400000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.0720000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0480000</td>
-<td style="text-align: right;">0.0440000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.0640000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0720000</td>
-<td style="text-align: right;">0.0720000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.0760000</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0640000</td>
-<td style="text-align: right;">0.0640000</td>
+<td style="text-align: right;">0.0400000</td>
 </tr>
 </tbody>
 </table>
