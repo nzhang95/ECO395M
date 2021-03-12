@@ -1,0 +1,310 @@
+---
+title: "ECO 395M: Exercises 2"
+author: "Nan Zhang (nz2996)"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(ggplot2)
+library(rsample)
+library(caret)
+library(modelr)
+library(parallel)
+library(foreach)
+library(mosaic)
+library(lubridate)
+library(FNN)
+
+
+
+capmetro_UT = read.csv('../data/capmetro_UT.csv')
+data(SaratogaHouses)
+
+german_credit = read.csv('../data/german_credit.csv')
+hotels_dev = read.csv('../data/hotels_dev.csv')
+hotels_val = read.csv('../data/hotels_val.csv')
+```
+## 1) Visualization 
+### A) One panel of line graphs that plots average boardings grouped by hour of the day, day of week, and month. 
+
+```{r, include=FALSE}
+capmetro_UT = mutate(capmetro_UT,
+                     day_of_week = factor(day_of_week,
+                                          levels=c("Mon", "Tue", "Wed","Thu", "Fri", "Sat", "Sun")),
+                     month = factor(month,
+                                    levels=c("Sep", "Oct","Nov")))
+
+capmetro_UT1 = capmetro_UT %>%
+  
+  group_by(hour_of_day, month, day_of_week) %>%
+  summarize(ave_boarding = mean(boarding))
+```
+
+```{r, echo=FALSE}
+ggplot(capmetro_UT1, aes(x = hour_of_day, y = ave_boarding)) + 
+  geom_line(aes(color = month)) +
+  facet_wrap(~day_of_week) + labs(
+    x = "Hour of day",
+    y = "Average Boarding",
+    color = "Month"
+  )
+```
+
+The panel of line graphs show that the hour of peak boardings change according to weekdays and weekends. Specifially, the boardings on weekdays share the same pattern, which is unimodal at 17:00. By contrast, the boradings on weekdends are much more flat.  
+
+We can also find some month-specific insights from the graphs. For example, average boardings on Mondays in September look lower. Similarly, average boardings on Weds/Thurs/Fri in November also look lower. Those insights can be illustrated by holidays, i.e., Labor day in September and Thanksgiving in November. On holidays, most people don't need to go to work, and it causes the reduction in the daily boarding.
+
+### B) One panel of scatter plots showing boardings (y) vs. Nch 15-minute window, faceted by hour of the day, and with points colored in according to whether it is a weekday or weekend. 
+
+
+```{r, echo=FALSE}
+ggplot(capmetro_UT, aes(x = temperature, y = boarding)) + 
+  geom_point(aes(color = weekend)) + 
+  facet_wrap(~hour_of_day) + labs(
+    x = "Temperature",
+    y = "Boarding",
+    color = "Weekend"
+  )
+```
+
+The panel of scatter plots show the relationship between boardings and temperature. Compared to the weekday boardings, boardings on weekends seems less when the temperature is low, given the hour of day kept constant. However, the effect is not significant, and we also need to notice that the sample on weekends are not enough to support stong argument that involves mutiple factors.
+
+
+```{r, include=FALSE}
+saratoga_split = initial_split(SaratogaHouses, prop = 0.8)
+saratoga_train = training(saratoga_split)
+saratoga_test = testing(saratoga_split)
+
+lm_medium = lm(price ~ lotSize + age + livingArea + bedrooms + 
+                 fireplaces + bathrooms + rooms + heating + fuel + centralAir, data=saratoga_train)
+
+lm_step = step(lm_medium,
+               scope=~(. + landValue + sewer + newConstruction + waterfront)^2)
+
+```
+
+## 2) Saratoga house prices
+
+### A) Linear model
+
+Recall the medium linear model in class, coefficients can be expressed as follows.
+```{r, echo = FALSE}
+coef(lm_medium)
+```
+
+Now we use the step regression based on the above medium linear model, and thus obtain the following best linear model with following coeffecients.
+
+```{r, echo = FALSE}
+coef(lm_step)
+```
+
+The out-of-sample RMSE for the best linear model is `r rmse(lm_step, saratoga_test)`, which indicates it significantly outperforms the medium linear model whose RMSE is `r rmse(lm_medium, saratoga_test)`.
+
+### B)  K-nearest-neighbor regression model
+
+```{r, echo=FALSE}
+X_all = model.matrix(~lotSize + age + livingArea + pctCollege + 
+                       bedrooms + fireplaces + bathrooms + rooms + heating + fuel +
+                       centralAir + landValue + waterfront + newConstruction - 1,
+                     data=saratoga_train)
+# standardize the columns of X_all
+feature_sd = apply(X_all, 2, sd)
+X_std = scale(X_all, scale=feature_sd)
+X_Y_train <- data.frame(X_std, price = factor(as.character(saratoga_train$price)))
+
+# loop over the individual data points for leave-one-out
+k_grid = c(1:100)
+N = nrow(saratoga_train)
+loo_mse = foreach(i = 1:N, .combine='rbind') %do% {
+  X_train = X_std[-i,]
+  X_test = X_std[i,]
+  y_train = saratoga_train$price[-i]
+  y_test = saratoga_train$price[i]
+  
+  knn_mse_out = foreach(k = k_grid, .combine='c') %do% {
+    knn_fit = knn.reg(X_train, X_test, y_train, k)
+    (y_test - knn_fit$pred)^2  # return prediction
+  }
+  knn_mse_out
+}
+err = sqrt(colMeans(loo_mse))
+RMSE_best = min(err)
+k_best = k_grid[which(err == RMSE_best)]
+
+ggplot() + 
+  geom_line(aes(x=k_grid, y=err)) + labs(
+    x = "K",
+    y = "RMSE",
+    color = "Cylinders"
+  )
+```
+
+Now we begin to build the K-nearest-neighbor regression model. From the RMSE plot, we find the optimal K obtained from training set is `r k_best` with RMSE `r RMSE_best`. 
+
+```{r, echo=FALSE}
+X_all_test = model.matrix(~lotSize + age + livingArea + pctCollege + 
+                            bedrooms + fireplaces + bathrooms + rooms + heating + fuel +
+                            centralAir + landValue + waterfront + newConstruction - 1,
+                          data=saratoga_test)
+
+X_std_test = scale(X_all_test, scale=feature_sd)
+X_Y_test <- data.frame(X_std_test, price = factor(as.character(saratoga_test$price)))
+knn_model = knn.reg(X_std, X_std_test, as.numeric(as.character(saratoga_train$price)), k_best)
+
+price_pred = knn_model$pred
+price_pred2 = predict(lm_step, saratoga_test)
+loo_mse2 = (as.numeric(as.character(X_Y_test$price)) - as.vector(price_pred))^2
+knn_rmse = sqrt(mean(loo_mse2))
+```
+
+Next, we do prediction using the optimal K, with RMSE `r knn_rmse`. The KNN model seems to have similar performance on achievingout-of-sample mean-squared error compared to linear model. The reason behind may be that the price doesn't not have a clear linear relationship with other factors, and thus linear model fails to outperform than KNN model.
+
+## 3) Classification and retrospective sampling
+```{r, echo = FALSE}
+german_credit1 = filter(german_credit) %>%
+  group_by(history) %>%
+  summarize(Defaultprob = mean(Default))
+
+ggplot(data = german_credit1) + 
+  geom_col(mapping = aes(x= history, y= Defaultprob)) + labs(
+    x = "Credit History",
+    y = "Default Probability",
+    color = "Cylinders"
+  )
+```
+
+We first make a bar plot of default probability by credit history. As depicited in the figure, borrowers with good history have a significant higher default probability, while borrowers with terrible history have a significant lower default probability. 
+
+```{r, echo = FALSE}
+glmmodel = glm(Default ~ duration + amount + installment + age + history + purpose + foreign, data = german_credit, family = binomial)
+coef(glmmodel)
+```
+We then build a logistic regression model using the variables duration, amount, installment, age, history, propose and foreign. We notice that history and foreign are two deterministic factors in the logistric regression model. However, we need to note that the dataset is highly unbalanced. As a major factor, the data with good history only accounts for 8% of the dataset. Therefore, the dataset is not appropriate for building a predictive model of defaults. The bank need to resample to create a dataset with credit history factor evenly-distributed in good, poor and terrible. 
+
+
+## 4) Children and hotel reservations
+
+### A) Model building
+```{r, include = FALSE}
+hotels_dev_split = initial_split(hotels_dev, prop = 0.8)
+hotels_dev_train = training(hotels_dev_split)
+hotels_dev_test = testing(hotels_dev_split)
+
+model1 =lm(children ~ market_segment + adults + customer_type + is_repeated_guest, data=hotels_dev_train)
+
+model2 =lm(children ~ . - arrival_date, data=hotels_dev_train)
+
+hotels_dev_train1 = mutate(hotels_dev_train,
+                           arrival_wday = wday(arrival_date) %>% factor(),
+                           arrival_month = month(arrival_date) %>% factor(),
+                           arrival_year = year(arrival_date) %>% factor())
+
+hotels_dev_test1 = mutate(hotels_dev_test,
+                          arrival_wday = wday(arrival_date) %>% factor(),
+                          arrival_month = month(arrival_date) %>% factor(),
+                          arrival_year = year(arrival_date) %>% factor())
+
+
+model3_0 =lm(children  ~.-arrival_date, data=hotels_dev_train1)
+
+
+model3 = step(model3_0, scope=~(.))
+
+hotels_val1 = mutate(hotels_val,
+                     arrival_wday = wday(arrival_date) %>% factor(),
+                     arrival_month = month(arrival_date) %>% factor(),
+                     arrival_year = year(arrival_date) %>% factor())
+
+probhat_test1 =predict(model1, hotels_val)
+probhat_test2 =predict(model2, hotels_val)
+probhat_test3 =predict(model3, hotels_val1)
+
+y_true = hotels_val$children
+```
+
+We first build the baseline 1 model with RMSE `r rmse(model1, hotels_dev_test)`.
+
+```{r, echo = FALSE}
+coef(model1)
+```
+We then build the baseline 1 model with RMSE `r rmse(model2, hotels_dev_test)`.
+
+```{r, echo = FALSE}
+coef(model2)
+```
+We finally build the baseline 3 model with RMSE `r rmse(model3, hotels_dev_test1)`, including features extracted from arrival_date.
+
+```{r, echo = FALSE}
+coef(model3)
+```
+
+### B) Model validation: step 1
+
+In step 1, we plot ROC curves for the three model using dataset hotels_dev, with threshold varys from 0 to 1. Those curves indicate that linear model and baseline 2 are significantly better than baseline 1.
+
+```{r, echo= FALSE}
+n = 100
+
+tpr1 <- fpr1 <- rep(1,n + 1)
+tpr2 <- fpr2 <- rep(1,n + 1)
+tpr3 <- fpr3 <- rep(1,n + 1)
+f1 <- rep(0,n + 1)
+
+for (i in 1:n) {
+  threshold <- i/n
+  yhat_test1 = ifelse(probhat_test1 >= threshold, 1, 0)
+  yhat_test2 = ifelse(probhat_test2 >= threshold, 1, 0)
+  yhat_test3 = ifelse(probhat_test3 >= threshold, 1, 0)
+  tp <- sum(yhat_test1 == 1 & y_true == 1)
+  fp <- sum(yhat_test1 == 1 & y_true == 0)
+  tn <- sum(yhat_test1 == 0 & y_true == 0)
+  fn <- sum(yhat_test1 == 0 & y_true == 1)
+  tpr1[i] <- tp/(tp+fn)
+  fpr1[i] <- fp/(tn+fp)
+  tp <- sum(yhat_test2 == 1 & y_true == 1)
+  fp <- sum(yhat_test2 == 1 & y_true == 0)
+  tn <- sum(yhat_test2 == 0 & y_true == 0)
+  fn <- sum(yhat_test2 == 0 & y_true == 1)
+  tpr2[i] <- tp/(tp+fn)
+  fpr2[i] <- fp/(tn+fp)
+  tp <- sum(yhat_test3 == 1 & y_true == 1)
+  fp <- sum(yhat_test3 == 1 & y_true == 0)
+  tn <- sum(yhat_test3 == 0 & y_true == 0)
+  fn <- sum(yhat_test3 == 0 & y_true == 1)
+  tpr3[i] <- tp/(tp+fn)
+  fpr3[i] <- fp/(tn+fp)
+  f1[i] <- (2 * tp/(2 * tp + fp + fn))
+}
+
+ggplot() + geom_line(aes(x=fpr1, y=tpr1, color = "blue")) + geom_line(aes(x=fpr2, y=tpr2, color = "black")) + geom_line(aes(x=fpr3, y=tpr3, color = "orange")) +
+  scale_color_discrete(name = "Model", labels = c("Baseline 1", "Baseline 2", "Linear model")) + 
+  labs(
+  x = "FPR(t)",
+  y = "TPR(t)"
+)
+```
+
+### C) Model validation: step 2
+
+In step 2, we create 20 folds of hotels_Val, predict whether each booking will have children on it using above 3 model, and compare predictions. The threshold is set as 0.41, which is determinted by maximizing the F1 score. We can find that baseline 2 and linear model behave similarly, but there are still gaps between predictions and true value.
+
+```{r, echo = FALSE}
+yhat_test1 = ifelse(probhat_test1 >= 0.41, 1, 0)
+yhat_test2 = ifelse(probhat_test2 >= 0.41, 1, 0)
+yhat_test3 = ifelse(probhat_test3 >= 0.41, 1, 0)
+
+allresult = tibble(y_true, yhat_test1, yhat_test2, yhat_test3)
+groupid = sample(nrow(allresult)) %% 20
+
+prob <- data.frame(matrix(ncol = 4, nrow = 0))
+colnames(prob) <- c("True Probability", "Predicted Probability 1", "Predicted Probability 2", "Predicted Probability 3")
+
+for (i in 1:20) {
+  prob[nrow(prob) + 1, ] = as.vector(colMeans(allresult[groupid == i - 1,]))
+}
+library(knitr)
+kable(prob)
+```
